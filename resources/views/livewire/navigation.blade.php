@@ -1,4 +1,4 @@
-<nav class="bg-gray-800" x-data="{open:false}">
+<nav class="bg-gray-800 border-b border-gray-100" x-data="{open:false}">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             {{-- Mobile menu button --}}
@@ -17,8 +17,8 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 {{-- Logo --}}
                 <a href="/" class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-8 w-auto" src="storage/img/logo.svg" alt="Workflow" />
-                    <img class="hidden lg:block h-8 w-auto" src="storage/img/titulo-white-logo-g.svg" alt="Workflow" />
+                    <img class="block lg:hidden h-8 w-auto" src="{{ asset('img/logo.svg') }}" alt="Global .Inc" />
+                    <img class="hidden lg:block h-8 w-auto" src="{{ asset('img/titulo-logo.svg') }}" alt="Global .Inc" />
                 </a>
                 {{-- enlaces --}}
                 <div class="hidden sm:block sm:ml-6">
