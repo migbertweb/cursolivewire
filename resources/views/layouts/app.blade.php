@@ -23,14 +23,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fontawesome-free-5.15.3-web/css/all.min.css') }}">
     @livewireStyles
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-mont  text-gray-900 antialiased">
     <x-jet-banner />
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen">
         @livewire('navigation')
         <!-- Page Content -->
         <main>
@@ -39,6 +41,16 @@
     </div>
     @stack('modals')
     @livewireScripts
+    <script type="text/javascript">
+    Livewire.on('alert', function(message) {
+        Swal.fire(
+            'Buen Trabajo!',
+            message,
+            'success'
+        )
+    })
+
+    </script>
 </body>
 
 </html>
