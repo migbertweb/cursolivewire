@@ -16,7 +16,7 @@ class CreatePost extends Component
     public $content;
 
     protected $rules = [
-        'title' => 'required|max:10',
+        'title' => 'required|max:100',
          'content' => 'required|min:100'
      ];
 
