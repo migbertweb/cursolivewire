@@ -11,7 +11,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                'mont': ['Montserrat'],
+                'rale': ['Raleway'],
+                'karla': ['Karla'],
             },
         },
     },
