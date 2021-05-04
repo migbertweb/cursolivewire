@@ -1,13 +1,14 @@
 <div>
     <x-table>
-        <div class="px-6 py-4">
-            <x-input class="w-full" type="text" wire:model="search" placeholder="Buscar" />
+        <div class="px-6 py-4 flex items-center">
+            <x-input class="flex-1 mr-3" type="text" wire:model="search" placeholder="Buscar" />
+            @livewire('create-post')
         </div>
         @if ($posts->count())
         <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('id')">
+                    <th scope="col" class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('id')">
                         Id
                         {{-- sort --}}
                         @if ($sort=='id')
