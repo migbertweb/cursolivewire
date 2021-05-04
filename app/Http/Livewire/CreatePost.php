@@ -24,7 +24,8 @@ class CreatePost extends Component
 
         $this->reset(['open', 'title', 'content']);
 
-        $this->emit('render');
+        $this->emitTo('show-posts', 'render');//$this->emit('render');
+        $this->emit('alert', 'Postcontent1');
     }
 
     public function render()
