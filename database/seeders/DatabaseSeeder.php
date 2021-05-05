@@ -1,7 +1,11 @@
 <?php
 
 /*
- * migbertyanez@disroot.org
+ * No es apto para produccion, solo para practica
+ * *************************************************
+ * * (c) Migbert Yanez - migbertyanez@disroot.org  *
+ * *************************************************
+ * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
 namespace Database\Seeders;
@@ -12,11 +16,9 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
-        \App\Models\Post::factory(100)->create();
+        \App\Models\Post::factory(40)->create();
     }
 }

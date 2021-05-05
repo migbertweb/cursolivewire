@@ -1,11 +1,11 @@
 <?php
 
 /*
- * Este archivo es parte de mi entrenamiento con Laravel
- * y Jetstream
- * No es apto para produccion
- * (c) Migbert Yanez - migbertyanez@disroot.org
- * "Estudiar de salir a la luz"
+ * No es apto para produccion, solo para practica
+ * *************************************************
+ * * (c) Migbert Yanez - migbertyanez@disroot.org  *
+ * *************************************************
+ * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
 namespace App\Http\Livewire;
@@ -44,15 +44,6 @@ class CreatePost extends Component
         $this->emit('alert', 'El Post se creo satisfactoriamente.');
     }
 
-    /**
-     * Renderiza la vista del componente.
-     *
-     * @method    render
-     *
-     * @author Migbert Yanez Caña <migbertyanez@disroot.org>
-     *
-     * @return [type] [description]
-     */
     public function render()
     {
         return view('livewire.create-post');
