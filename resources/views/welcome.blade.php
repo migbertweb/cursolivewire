@@ -4,13 +4,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <div>
-                        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                            {{-- Logo --}}
-                            <a href="/" class="flex-shrink-0 flex items-center">
-                                <img class="block lg:hidden lg:items-center h-8 w-auto" src="{{ asset('img/logo.svg') }}" alt="Global .Inc" />
-                                <img class="hidden lg:block h-8 w-auto" src="{{ asset('img/titulo-logo.svg') }}" alt="Global .Inc" />
-                            </a>
-                        </div>
+                        <x-logo />
                     </div>
                     <div class="mt-8 text-2xl">
                         Welcome to your Jetstream application!

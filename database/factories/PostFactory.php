@@ -1,7 +1,11 @@
 <?php
 
 /*
- * migbertyanez@disroot.org
+ * No es apto para produccion, solo para practica
+ * *************************************************
+ * * (c) Migbert Yanez - migbertyanez@disroot.org  *
+ * *************************************************
+ * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
 namespace Database\Factories;
@@ -26,8 +30,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title'=>$this->faker->sentence(),
-            'content'=>$this->faker->text()
+            'title' => $this->faker->sentence(),
+            'content' => $this->faker->text(),
+            'image' => 'posts/' . $this->faker->image('public/storage/posts', 640, 480, null, false),
         ];
     }
 }

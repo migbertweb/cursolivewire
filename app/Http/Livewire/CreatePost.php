@@ -1,43 +1,63 @@
 <?php
 
 /*
- * migbertyanez@disroot.org
+ * No es apto para produccion, solo para practica
+ * *************************************************
+ * * (c) Migbert Yanez - migbertyanez@disroot.org  *
+ * *************************************************
+ * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
 namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreatePost extends Component
 {
-    public $open = false;
+    use WithFileUploads;
+
+    public $open = true;
     public $title;
     public $content;
+    public $image;
+    public $identificador;
 
     protected $rules = [
-        'title' => 'required|max:100',
-         'content' => 'required|min:100'
-     ];
+        'title' => 'required',
+        'content' => 'required',
+        'image' => 'required|image|max:2048',
+    ];
 
-    public function updated($propertyName)
+    public function mount()
     {
-        $this->validateOnly($propertyName);
+        $this->identificador = rand();
     }
+
+    /* public function updated($propertyName)
+     {
+         $this->validateOnly($propertyName);
+     }*/
 
     public function save()
     {
         $this->validate();
 
+        $image = $this->image->store('posts');
+
         Post::create([
             'title' => $this->title,
-            'content' => $this->content
+            'content' => $this->content,
+            'image' => $image,
         ]);
 
-        $this->reset(['open', 'title', 'content']);
+        $this->reset(['open', 'title', 'content', 'image']);
 
-        $this->emitTo('show-posts', 'render');//$this->emit('render');
-        $this->emit('alert', 'Postcontent1');
+        $this->identificador = rand();
+
+        $this->emitTo('show-posts', 'render'); //$this->emit('render');
+        $this->emit('alert', 'El Post se creo satisfactoriamente.');
     }
 
     public function render()

@@ -1,7 +1,11 @@
 <?php
 
 /*
- * migbertyanez@disroot.org
+ * No es apto para produccion, solo para practica
+ * *************************************************
+ * * (c) Migbert Yanez - migbertyanez@disroot.org  *
+ * *************************************************
+ * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,8 +16,6 @@ class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -22,6 +24,7 @@ class CreatePostsTable extends Migration
 
             $table->string('title');
             $table->string('content');
+            $table->string('image');
 
             $table->timestamps();
         });
@@ -29,8 +32,6 @@ class CreatePostsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
