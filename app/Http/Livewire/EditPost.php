@@ -19,7 +19,7 @@ class EditPost extends Component
 {
     use WithFileUploads;
 
-    public $open = false;
+    public $open = false; // se encarga de abrir el Modal
     public $post;
     public $image;
     public $identificador;

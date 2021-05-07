@@ -16,6 +16,7 @@ use Livewire\WithFileUploads;
 
 class CreatePost extends Component
 {
+    //usado para poder subir imagenes al servidor
     use WithFileUploads;
 
     public $open = false;
@@ -23,7 +24,7 @@ class CreatePost extends Component
     public $content;
     public $image;
     public $identificador;
-
+    // declaracion de validacion de variables
     protected $rules = [
         'title' => 'required',
         'content' => 'required',

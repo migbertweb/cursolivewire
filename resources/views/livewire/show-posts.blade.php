@@ -1,4 +1,5 @@
 <div>
+    {{-- Tabla con los registro que envia el componente --}}
     <x-table>
         <div class="px-6 py-4 flex items-center">
             <x-input class="flex-1 mr-3" type="text" wire:model="search" placeholder="Buscar" />
@@ -53,25 +54,28 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($posts as $post)
+                @foreach ($posts as $item)
                 <tr>
                     <td class="px-6 py-4">
                         <div class="text-sm text-gray-900">
-                            {{ $post->id }}
+                            {{ $item->id }}
                         </div>
                     </td>
                     <td class="px-6 py-4">
                         <div class="text-sm text-gray-900">
-                            {{ $post->title }}
+                            {{ $item->title }}
                         </div>
                     </td>
                     <td class="px-6 py-4">
                         <div class="text-sm text-gray-900">
-                            {{ $post->content }}
+                            {{ $item->content }}
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        @livewire('edit-post', ['post' => $post], key($post->id))
+                        {{-- @livewire('edit-post', ['post' => $post], key($post->id)) --}}
+                        <a class="btn btn-green" wire:click="edit({{ $item }})">
+                            <i class="fas fa-edit"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
@@ -82,5 +86,55 @@
             No Existe ningun registro coincidente.
         </div>
         @endif
+        {{-- Paginacion de resultados --}}
+        @if ($posts->hasPages())
+        <div class="px-6 py-3">
+            {{ $posts->links() }}
+        </div>
+        @endif
     </x-table>
+    {{-- fin tabla --}}
+    {{-- Modal para editar Post --}}
+    <x-jet-dialog-modal wire:model="open_edit">
+        <x-slot name="title">
+            Editar Post
+        </x-slot>
+        <x-slot name="content">
+            <div wire:loading wire:target="image" class="p-12 flex flex-col space-y-3">
+                <div class="relative w-full bg-gray-200 rounded">
+                    <div style="width:100%" class="absolute top-0 h-6 rounded shim-blue">
+                    </div>
+                </div>
+                Cargando Imagen, Por favor Espere.
+            </div>
+            @if ($image)
+            <img class="mb-4 h-100" src="{{ $image->temporaryUrl() }}">
+            @else
+            <img src="{{ Storage::url($post->image) }}">
+            @endif
+            <div class="mb-4">
+                <x-jet-label value="Titulo del Post" />
+                <x-input type="text" class="w-full" wire:model="post.title">
+                </x-input>
+            </div>
+            <div class="mb-4">
+                <x-jet-label value="Contenido del Post" />
+                <textarea wire:model="post.content" class="form-control w-full" rows="6">
+            </textarea>
+            </div>
+            <div>
+                <input type="file" wire:model='image' id="{{ $identificador }}">
+                <x-jet-input-error for='image' />
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('open_edit',false)">
+                Cancelar
+            </x-jet-secondary-button>
+            <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" wire:target="save" class="disabled:opacity-25">
+                Actualizar
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+    {{-- Fin Modal para editar Post --}}
 </div>
