@@ -1,5 +1,5 @@
 .form-control {
-    @apply focus: ring focus:ring-blue-200 focus:ring-opacity-50 border border-gray-300 rounded-sm px-2 py-2 outline-none transition-colors duration-150 ease-in-out rounded-md shadow-sm;
+    @apply focus:ring focus:ring-blue-200 focus:ring-opacity-50 border border-gray-300 rounded-sm px-2 py-2 outline-none transition-colors duration-150 ease-in-out rounded-md shadow-sm;
 }
 
 h1 {

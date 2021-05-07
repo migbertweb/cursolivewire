@@ -18,7 +18,7 @@ class CreatePost extends Component
 {
     use WithFileUploads;
 
-    public $open = true;
+    public $open = false;
     public $title;
     public $content;
     public $image;
@@ -57,6 +57,7 @@ class CreatePost extends Component
         $this->identificador = rand();
 
         $this->emitTo('show-posts', 'render'); //$this->emit('render');
+
         $this->emit('alert', 'El Post se creo satisfactoriamente.');
     }
 
