@@ -14,6 +14,13 @@ use Livewire\Component;
 
 class Navigation extends Component
 {
+    /**
+     * Renderiza la NavBar en applayout.
+     *
+     *  @method    render
+     *
+     * @return view
+     */
     public function render()
     {
         return view('livewire.navigation');

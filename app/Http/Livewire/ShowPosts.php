@@ -18,6 +18,8 @@ use Livewire\WithPagination;
 
 class ShowPosts extends Component
 {
+    /* facade para subir imagenes y
+    utilizar la paginacion reactiva de Livewire */
     use WithFileUploads;
     use WithPagination;
 
@@ -51,22 +53,31 @@ class ShowPosts extends Component
         $this->post = new Post();
     }
 
+    /*utilizamos un hooks de livewire para
+     actualizar search y resetear la paginacion*/
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
+    /**
+     * Renderiza la pagina que muestra la tabla con los datos de Posts.
+     *
+     * @method    render
+     */
     public function render()
     {
+        // obtenemos los datos de los post en la base de datos y paginamos solo 10
         $posts = Post::where('title', 'like', '%' . $this->search . '%')
             ->orWhere('content', 'like', '%' . $this->search . '%')
             ->orderby($this->sort, $this->direction)
             ->paginate(10)
         ;
-
+        // retornamos la vista y pasamos los datos posts
         return view('livewire.show-posts', compact('posts'));
     }
 
+    // metodo para ordenar los resultados en la tabla
     public function order($sort)
     {
         if ($this->sort == $sort) {
@@ -81,28 +92,44 @@ class ShowPosts extends Component
         }
     }
 
+    /**
+     * metodo para editar post, muestra el modal con los datos.
+     *
+     * @method    edit
+     *
+     * @param Post $post obtenido de la vista de ShowPosts
+     *
+     * @return [type] [description]
+     */
     public function edit(Post $post)
     {
         $this->post = $post;
         $this->open_edit = true;
     }
 
+    /**
+     * funcion que guarda los datos en la BD.
+     *
+     * @method    update
+     */
     public function update()
     {
+        // valida los datos obtenidos
         $this->validate();
-
+        // si hay una imagen nueva
         if ($this->image) {
+            // borra la anterior del servidor en /post
             Storage::delete([$this->post->image]);
-
+            // y sube la nueva obteniendo su url
             $this->post->image = $this->image->store('posts');
         }
-
+        // salva los datos en BD
         $this->post->save();
-
+        // resetea los parametros:
         $this->reset(['open_edit', 'image']);
 
         $this->identificador = rand();
-
+        // emite una alert con el resultado
         $this->emit('alert', 'El Post se edito satisfactoriamente.');
     }
 }
