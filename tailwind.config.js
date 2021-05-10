@@ -12,8 +12,6 @@ module.exports = {
         extend: {
             fontFamily: {
                 'mont': ['Montserrat'],
-                'rale': ['Raleway'],
-                'karla': ['Karla'],
             },
         },
     },
