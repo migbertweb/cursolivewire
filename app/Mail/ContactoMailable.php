@@ -21,11 +21,16 @@ class ContactoMailable extends Mailable
 
     public $subject = 'Informacion de Contacto';
 
+    public $contacto;
+
     /**
      * Create a new message instance.
+     *
+     * @param mixed $contacto
      */
-    public function __construct()
+    public function __construct($contacto)
     {
+        $this->contacto = $contacto;
     }
 
     /**
