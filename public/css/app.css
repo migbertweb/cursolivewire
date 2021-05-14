@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap);
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap'); */
+
 /* componerntes de tailwindcss */
 
 /* ! tailwindcss v2.1.2 | MIT License | https://tailwindcss.com */
@@ -12727,14 +12729,6 @@ select{
 
 .font-mont{
   font-family: Montserrat;
-}
-
-.font-rale{
-  font-family: Raleway;
-}
-
-.font-karla{
-  font-family: Karla;
 }
 
 .font-thin{
@@ -33423,18 +33417,37 @@ select{
 }
 
 h1 {
-  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
   font-weight: 600;
   font-size: 1.875rem;
   line-height: 2.25rem;
   margin-bottom: 1rem;
 }
 
-h2 {
-  font-family: Montserrat;
+h3 {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+h5 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   margin-bottom: 1rem;
 }
 
@@ -45526,14 +45539,6 @@ p {
 
   .sm\:font-mont{
     font-family: Montserrat;
-  }
-
-  .sm\:font-rale{
-    font-family: Raleway;
-  }
-
-  .sm\:font-karla{
-    font-family: Karla;
   }
 
   .sm\:font-thin{
@@ -78030,14 +78035,6 @@ p {
     font-family: Montserrat;
   }
 
-  .md\:font-rale{
-    font-family: Raleway;
-  }
-
-  .md\:font-karla{
-    font-family: Karla;
-  }
-
   .md\:font-thin{
     font-weight: 100;
   }
@@ -110530,14 +110527,6 @@ p {
 
   .lg\:font-mont{
     font-family: Montserrat;
-  }
-
-  .lg\:font-rale{
-    font-family: Raleway;
-  }
-
-  .lg\:font-karla{
-    font-family: Karla;
   }
 
   .lg\:font-thin{
@@ -143034,14 +143023,6 @@ p {
     font-family: Montserrat;
   }
 
-  .xl\:font-rale{
-    font-family: Raleway;
-  }
-
-  .xl\:font-karla{
-    font-family: Karla;
-  }
-
   .xl\:font-thin{
     font-weight: 100;
   }
@@ -175534,14 +175515,6 @@ p {
 
   .\32xl\:font-mont{
     font-family: Montserrat;
-  }
-
-  .\32xl\:font-rale{
-    font-family: Raleway;
-  }
-
-  .\32xl\:font-karla{
-    font-family: Karla;
   }
 
   .\32xl\:font-thin{

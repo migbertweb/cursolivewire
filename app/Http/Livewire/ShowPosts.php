@@ -32,6 +32,7 @@ class ShowPosts extends Component
     public $image;
     public $identificador;
     public $cant = '10';
+    public $readyToload = false; //para la carga diferida
 
     protected $queryString = [
         'cant' => ['except' => '10'],
@@ -76,14 +77,24 @@ class ShowPosts extends Component
      */
     public function render()
     {
-        // obtenemos los datos de los post en la base de datos y paginamos solo 10
-        $posts = Post::where('title', 'like', '%' . $this->search . '%')
-            ->orWhere('content', 'like', '%' . $this->search . '%')
-            ->orderby($this->sort, $this->direction)
-            ->paginate($this->cant)
-        ;
+        if ($this->readyToload) {
+            // obtenemos los datos de los post en la base de datos y paginamos solo 10
+            $posts = Post::where('title', 'like', '%' . $this->search . '%')
+                ->orWhere('content', 'like', '%' . $this->search . '%')
+                ->orderby($this->sort, $this->direction)
+                ->paginate($this->cant)
+            ;
+        } else {
+            $posts = [];
+        }
+
         // retornamos la vista y pasamos los datos posts
         return view('livewire.show-posts', compact('posts'));
+    }
+
+    public function loadPosts()
+    {
+        $this->readyToload = true;
     }
 
     // metodo para ordenar los resultados en la tabla

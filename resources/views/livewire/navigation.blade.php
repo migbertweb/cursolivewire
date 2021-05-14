@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 border-b border-gray-100" x-data="{open:false}">
+<nav class="bg-gray-800 border-b border-gray-600" x-data="{open:false}">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             {{-- Mobile menu button --}}
@@ -23,10 +23,19 @@
                 {{-- enlaces --}}
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
+                        <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                            Home
+                        </x-nav-link>
+                        @auth
                         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+                        @endauth
+                        @guest
+                        <x-nav-link href="{{ route('contacto.index') }}" :active="request()->routeIs('contacto.index')">
+                            Contacto
+                        </x-nav-link>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -52,6 +61,7 @@
                     {{-- Menu --}}
                     <div x-show="open" x-on:click.away="open=false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">{{ __('Profile') }}</a>
+                        <a href="{{ route('admin') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Administracion</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2" onclick="event.preventDefault(); this.closest('form').submit();">
@@ -63,9 +73,11 @@
             </div>
             @else
             <div class="hidden sm:block">
+                @unless (request()->routeIs('home'))
                 <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
                     {{ __('Log in') }}
                 </x-nav-link>
+                @endunless
                 <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                     {{ __('Register') }}
                 </x-nav-link>
@@ -76,14 +88,23 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu" x-show="open" x-on:click.away="open=false">
         <div class="px-2 pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                Home
+            </x-responsive-nav-link>
+            @auth
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
+            @endauth
             @guest
+            <x-responsive-nav-link href="{{ route('contacto.index') }}" :active="request()->routeIs('contacto.index')">
+                Contacto
+            </x-responsive-nav-link>
+            @unless (request()->routeIs('home'))
             <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
                 {{ __('Log in') }}
             </x-responsive-nav-link>
+            @endunless
             <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                 {{ __('Register') }}
             </x-responsive-nav-link>
