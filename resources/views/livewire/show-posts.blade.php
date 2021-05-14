@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadPosts">
     {{-- Tabla con los registro que envia el componente --}}
     <x-table>
         <div class="px-6 py-4 flex items-center">
@@ -15,7 +15,7 @@
             <x-input class="flex-1 mx-4" type="text" wire:model="search" placeholder="Buscar" />
             @livewire('create-post')
         </div>
-        @if ($posts->count())
+        @if (count($posts))
         <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
                 <tr>
@@ -91,15 +91,15 @@
                 @endforeach
             </tbody>
         </table>
-        @else
-        <div class="px-6 py-4">
-            No Existe ningun registro coincidente.
-        </div>
-        @endif
         {{-- Paginacion de resultados --}}
         @if ($posts->hasPages())
         <div class="px-6 py-3">
             {{ $posts->links() }}
+        </div>
+        @endif
+        @else
+        <div class="px-6 py-4">
+            No Existe ningun registro coincidente.
         </div>
         @endif
     </x-table>

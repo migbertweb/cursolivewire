@@ -8,8 +8,7 @@
  * "La Verdad solo se puede encontrar en un lugar: El Codigo"
  */
 
-use App\Mail\ContactoMailable;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,15 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('contacto', function () {
-    $correo = new ContactoMailable();
-    Mail::to('migbertyanez@disroot.org')->Send($correo);
+Route::get('contacto', [ContactoController::class, 'index'])->name('contacto.index');
 
-    return 'Mensaje Enviado';
-})->name('contacto');
+Route::post('contacto', [ContactoController::class, 'store'])->name('contacto.store');
