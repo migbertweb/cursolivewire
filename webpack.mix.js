@@ -11,12 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ]);
+mix
+  .js('resources/js/app.js', 'public/js')
+  .postCss('resources/css/app.css', 'public/css', [
+    // eslint-disable-next-line global-require
+    require('postcss-import'),
+    // eslint-disable-next-line global-require
+    require('tailwindcss'),
+  ]);
 
 if (mix.inProduction()) {
-    mix.version();
+  mix.version();
 }
