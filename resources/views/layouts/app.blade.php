@@ -19,17 +19,42 @@
     --}}
     {{-- @stack('modals') --}}
     @livewireScripts
+    @stack('js')
     {{-- script de alerta para eventos --}}
     <script type="text/javascript">
     Livewire.on('alert', function(message) {
-        Swal.fire(
-            'Buen Trabajo!',
-            message,
-            'success'
-        )
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 6000,
+            toast: true,
+            timerProgressBar: true
+        })
+        // Swal.fire(
+        // 'Buen Trabajo!',
+        // message,
+        // 'success'
+        // )
+
     })
 
     </script>
+    {{-- para alertas comunes --}}
+    @if (session('info'))
+    <script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: "{{ session('info') }}",
+        showConfirmButton: false,
+        timer: 6000,
+        toast: true
+    })
+
+    </script>
+    @endif
 </body>
 
 </html>

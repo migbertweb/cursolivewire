@@ -49,17 +49,4 @@
             </div>
         </div>
     </header>
-    @if (session('info'))
-    <script>
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: "{{ session('info') }}",
-        showConfirmButton: false,
-        timer: 6000,
-        toast: true
-    })
-
-    </script>
-    @endif
 </x-app-layout>
