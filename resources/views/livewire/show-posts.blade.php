@@ -81,10 +81,13 @@
                             {{ $item->content }}
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex">
                         {{-- @livewire('edit-post', ['post' => $post], key($post->id)) --}}
                         <a class="btn btn-green" wire:click="edit({{ $item }})">
                             <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-red ml-2" wire:click="$emit('deletePost', {{ $item->id }})">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -147,4 +150,30 @@
         </x-slot>
     </x-jet-dialog-modal>
     {{-- Fin Modal para editar Post --}}
+    @push('js')
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script>
+        Livewire.on('deletePost', postId => {
+          Swal.fire({
+            title: 'Esta usted seguro?',
+            text: "esta accion no se puede revertir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, borrar registro!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emitTo('show-posts', 'delete', postId);
+              Swal.fire(
+                'Borrado!',
+                'su registro ha sido eliminado.',
+                'success'
+              );
+            }
+          });
+        });
+
+    </script>
+    @endpush
 </div>

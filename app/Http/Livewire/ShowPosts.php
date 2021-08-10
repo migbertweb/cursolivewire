@@ -48,7 +48,7 @@ class ShowPosts extends Component
     ];
 
     // tiene el mismo resultado['render' => 'render']
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'delete'];
 
     /**
      * Funcion para inicializar propiedades.
@@ -82,8 +82,7 @@ class ShowPosts extends Component
             $posts = Post::where('title', 'like', '%' . $this->search . '%')
                 ->orWhere('content', 'like', '%' . $this->search . '%')
                 ->orderby($this->sort, $this->direction)
-                ->paginate($this->cant)
-            ;
+                ->paginate($this->cant);
         } else {
             $posts = [];
         }
@@ -151,5 +150,10 @@ class ShowPosts extends Component
         $this->identificador = rand();
         // emite una alert con el resultado
         $this->emit('alert', 'El Post se edito satisfactoriamente.');
+    }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
     }
 }
